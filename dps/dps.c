@@ -20,12 +20,18 @@ void dfs(int vertex) {
 }
 
 int main() {
-    nodesCount = 5;
+    nodesCount = MAX_NODES;
 
     adj[0][1] = 1; adj[1][0] = 1;
     adj[0][2] = 1; adj[2][0] = 1;
     adj[1][3] = 1; adj[3][1] = 1;
     adj[1][4] = 1; adj[4][1] = 1;
+    adj[2][5] = 1; adj[5][2] = 1;
+    adj[5][6] = 1; adj[6][5] = 1;
+    adj[4][6] = 1; adj[6][4] = 1;
+    adj[3][7] = 1; adj[7][3] = 1;
+    adj[6][8] = 1; adj[8][6] = 1;
+    adj[8][9] = 1; adj[9][8] = 1;
 
     for (int i = 0; i < nodesCount; i++) {
         visited[i] = false;
@@ -36,3 +42,27 @@ int main() {
 
     return 0;
 }
+
+
+
+/* 
+ This looks like this:
+
+      (0)
+     /   \
+   (1)---(2)
+   / \     \
+ (3) (4)---(5)
+  |    \   /
+ (7)    (6)
+         |
+        (8)
+         |
+        (9)
+
+
+result =:
+
+0,1,3,7,4,6,5,2,8,9
+ * */
+
