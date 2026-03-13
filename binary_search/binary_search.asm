@@ -28,15 +28,32 @@ binary_search:
 #while loop
 loop:
     blt s1, s0, not_found #if (high < low) -> not found
-    add t1, s0, s1 
+    add t1, s0, s1 #int mid = low + high
+    srai t1, t1, 1 #mid = mid/2
+    slli t2, t1, 2 
+    add t2, s2, t1 
+    lw t3, 0(t2)   #int val = array[mid]
+    beq t2, t0, found #if(val == target) -> found
+    blt t2, t0, add_right #if(val < target) -> add_right
 
+minus_left:             # else (val < target)
+    addi s1, t1, -1     # low = mid + 1
+    j loop              
 
+add_right:              #else (val < target)
+    addi s0, t1, 1      #low = mid + 1 
 
-
-
-
-
+found: 
+    mv a0, t1
+    j restore
 
 not_found:
     li a0, -1
-    
+
+restore:
+    lw ra, 12(sp)
+    lw s0, 8(sp)
+    lw s1, 4(sp)
+    lw s2, 0(sp)
+    addi sp,sp, 16 
+    ret
