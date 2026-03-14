@@ -7,6 +7,7 @@ main:
     #la = load address
     la a0, array #a0 = #data[]
     lw a1, size #a1 = size
+    nop
     li a2, 23 #a2 = 23 -> target = 23 
     call binary_search
     #exit()
@@ -28,21 +29,27 @@ binary_search:
 #while loop
 loop:
     blt s1, s0, not_found #if (high < low) -> not found
+    nop
     add t1, s0, s1 #int mid = low + high
     srai t1, t1, 1 #mid = mid/2
     slli t2, t1, 2 
     add t2, s2, t1 
     lw t3, 0(t2)   #int val = array[mid]
+    nop
     beq t2, t0, found #if(val == target) -> found
+    nop
     blt t2, t0, add_right #if(val < target) -> add_right
+    nop
 
 minus_left:             # else (val < target)
     addi s1, t1, -1     # low = mid + 1
     j loop              
+    nop
 
 add_right:              #else (val < target)
     addi s0, t1, 1      #low = mid + 1 
     j loop              
+    nop
 
 found: 
     mv a0, t1
