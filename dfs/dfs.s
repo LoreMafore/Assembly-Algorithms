@@ -89,7 +89,6 @@ dfs:
     
 .globl main
 main:
-    # AI GENERATED
     # 1. Initialize nodes_count = 5
     la t0, nodes_count
     li t1, 5
