@@ -10,7 +10,6 @@ main:
     lw a1, size #a1 = size
     li a2, 23 #a2 = 23 -> target = 23 
     call binary_search
-    #exit()
     li a7, 10 
     ecall 
 
